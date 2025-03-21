@@ -1,9 +1,14 @@
+import { db } from '@/_libs/prisma';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 
-export default function Home() {
+export default async function Home() {
+    const services = await db.barbershopService.findMany();
+
+    console.log(services);
+
     return (
         <div className="flex h-full w-full items-center justify-center font-[family-name:var(--font-geist-sans)]">
             <div className="h-[400px] w-[85%] overflow-hidden rounded-3xl bg-neutral-900 sm:w-[300px]">
@@ -27,9 +32,14 @@ export default function Home() {
                         Especializada em cortes
                     </h3>
                 </div>
-                <Button className="mx-auto mt-[30px] flex w-[80%] items-center justify-center space-x-1 bg-emerald-700 text-white hover:bg-emerald-500">
-                    <FcGoogle />
-                    Entra com gmail do google
+                <Button
+                    asChild
+                    className="mx-auto mt-[30px] flex w-[80%] items-center justify-center space-x-1 bg-emerald-700 text-white hover:bg-emerald-500"
+                >
+                    <Link href="/client">
+                        <FcGoogle />
+                        Entra com gmail do google
+                    </Link>
                 </Button>
 
                 <Link
