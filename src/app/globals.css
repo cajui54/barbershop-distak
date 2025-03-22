@@ -45,7 +45,7 @@
 }
 html,
 body {
-    @apply h-full w-full;
+    @apply h-full w-full bg-neutral-800;
 }
 
 :root {
