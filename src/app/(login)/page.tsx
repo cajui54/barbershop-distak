@@ -28,10 +28,10 @@ export default async function Home() {
                     <h2 className="text-sm font-bold text-neutral-500">
                         Seja Bem Vindo
                     </h2>
-                    <h3 className="-mt-2 text-3xl font-bold text-emerald-700">
+                    <h3 className="-mt-2 text-2xl font-bold text-emerald-700 sm:text-3xl">
                         Barbearia Destak
                     </h3>
-                    <p className="-mt-2 ml-1.5 text-[12px]">
+                    <p className="-mt-1 ml-1.5 text-[10px] sm:text-[12px]">
                         Especializada em Cabelo - Barba - Pezinho
                     </p>
                 </div>
