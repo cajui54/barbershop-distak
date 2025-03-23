@@ -1,14 +1,9 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet, SheetTrigger } from '@/components/ui/sheet';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { IoMenu } from 'react-icons/io5';
+import SheetContentClient from './sheet-content-client';
 
 const Header = () => {
     return (
@@ -23,11 +18,11 @@ const Header = () => {
                     />
                 </Link>
                 <div className="flex gap-x-2">
-                    <div className="h-[40px] w-[40px] animate-pulse overflow-hidden rounded-full bg-neutral-700">
+                    <div className="h-[40px] w-[40px] overflow-hidden rounded-full bg-neutral-700">
                         <Link href="/client">
                             <Image
                                 src="/viola_profile.png"
-                                alt="logo destak barbearia"
+                                alt="profile image"
                                 width={70}
                                 height={70}
                                 className="relative bottom-5 scale-150 object-cover"
@@ -50,9 +45,7 @@ const Header = () => {
                 <SheetTrigger>
                     <IoMenu className="text-4xl text-neutral-400" />
                 </SheetTrigger>
-                <SheetContent>
-                    <SheetHeader>Menu da Barbearia</SheetHeader>
-                </SheetContent>
+                <SheetContentClient />
             </Sheet>
         </header>
     );

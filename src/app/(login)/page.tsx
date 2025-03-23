@@ -1,13 +1,11 @@
+import ButtonLogin from '@/app/_components/button-login';
 import { db } from '@/_libs/prisma';
-import { Button } from '@/components/ui/button';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { FcGoogle } from 'react-icons/fc';
 
 export default async function Home() {
     const services = await db.barbershopService.findMany();
-
-    console.log(services);
 
     return (
         <div className="flex h-full w-full items-center justify-center font-[family-name:var(--font-geist-sans)]">
@@ -40,16 +38,8 @@ export default async function Home() {
                     <p className="text-center text-[13px] text-neutral-500">
                         Agendamentos de Horários e Serviços.
                     </p>
-                    <Button
-                        asChild
-                        className="mx-auto mt-[5px] flex w-[80%] items-center justify-center space-x-1 bg-emerald-700 text-white hover:bg-emerald-500"
-                    >
-                        <Link href="/client">
-                            <FcGoogle />
-                            Entra com gmail do google
-                        </Link>
-                    </Button>
 
+                    <ButtonLogin />
                     <Link
                         className="mt-8 block text-center text-sm tracking-wide text-neutral-500 underline"
                         href="https://workspace.google.com/intl/pt-BR/gmail/"

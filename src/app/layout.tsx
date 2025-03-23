@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Roboto, Oxygen } from 'next/font/google';
 import './globals.css';
+import AuthProvider from '@/app/_providers/auth';
 
 const oxygen = Oxygen({
     subsets: ['latin'],
@@ -8,10 +9,6 @@ const oxygen = Oxygen({
     variable: '--font-oxygen',
 });
 
-/*const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});*/
 const roboto = Roboto({
     subsets: ['cyrillic'],
     weight: ['100', '300', '700', '900'],
@@ -46,7 +43,7 @@ export default function RootLayout({
             <body
                 className={`${oxygen.variable} ${roboto.variable} antialiased`}
             >
-                {children}
+                <AuthProvider>{children}</AuthProvider>
             </body>
         </html>
     );

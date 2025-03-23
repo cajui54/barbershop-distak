@@ -1,8 +1,9 @@
-import Header from '@/_components/header';
-import ScreenInfoUser from '@/_components/screen-info-user';
+import Header from '@/app/_components/header';
+import ScreenInfoUser from '@/app/_components/screen-info-user';
+import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 
-export default function ClientLayout({
+export default async function ClientLayout({
     children,
 }: Readonly<{ children: ReactNode }>) {
     return (
