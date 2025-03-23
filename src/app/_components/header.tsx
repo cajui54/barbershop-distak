@@ -8,38 +8,14 @@ import SheetContentClient from './sheet-content-client';
 const Header = () => {
     return (
         <header className="flex h-16 items-center justify-between border border-neutral-900 px-3 pt-1">
-            <div className="flex w-[200px] items-center">
-                <Link href="/client">
-                    <Image
-                        src="/logo-destak.ico"
-                        alt="logo destak barbearia"
-                        width={50}
-                        height={50}
-                    />
-                </Link>
-                <div className="flex gap-x-2">
-                    <div className="h-[40px] w-[40px] overflow-hidden rounded-full bg-neutral-700">
-                        <Link href="/client">
-                            <Image
-                                src="/viola_profile.png"
-                                alt="profile image"
-                                width={70}
-                                height={70}
-                                className="relative bottom-5 scale-150 object-cover"
-                            />
-                        </Link>
-                    </div>
-
-                    <div>
-                        <p className="text-2xl font-bold text-emerald-400">
-                            Viola
-                        </p>
-                        <p className="-mt-2 ml-1 text-[10px] text-neutral-300">
-                            Cabeleleiro
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <Link href="/client">
+                <Image
+                    src="/logo-destak.ico"
+                    alt="logo destak barbearia"
+                    width={50}
+                    height={50}
+                />
+            </Link>
 
             <Sheet>
                 <SheetTrigger>

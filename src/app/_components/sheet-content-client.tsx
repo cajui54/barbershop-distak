@@ -4,15 +4,16 @@ import { AvatarFallback } from '@radix-ui/react-avatar';
 import Image from 'next/image';
 import React from 'react';
 import ButtonLogout from './button-logout';
+import { IoIosCut } from 'react-icons/io';
 
 const SheetContentClient = () => {
     return (
         <SheetContent className="bg-neutral-950">
             <SheetHeader>
-                <SheetTitle>Menu da Barbearia</SheetTitle>
+                <SheetTitle>Obrigado pela preferência!</SheetTitle>
             </SheetHeader>
 
-            <div className="mx-auto flex h-[100px] w-[90%] items-center justify-between gap-x-2 rounded-3xl bg-neutral-900 px-1.5">
+            <div className="mx-auto flex h-[100px] w-[90%] items-center gap-x-2 rounded-3xl bg-neutral-900 px-1.5">
                 <div className="h-[60px] w-[60px] overflow-hidden rounded-full bg-emerald-950">
                     <Image
                         src="/viola_profile.png"
@@ -24,17 +25,17 @@ const SheetContentClient = () => {
                 </div>
 
                 <div className="w-[70%]">
-                    <p className="text-[12px] font-bold text-neutral-300">
-                        Obrigado pela preferência!
-                    </p>
-                    <h2 className="text-2xl font-bold text-emerald-500">
+                    <h2 className="flex items-center text-2xl font-bold text-emerald-500">
                         Viola
+                        <IoIosCut className="text-neutral-300" />
                     </h2>
-                    <h3 className="-mt-2 text-[10px]">Cabeleleiro</h3>
+                    <h3 className="-mt-2 ml-2 text-sm text-neutral-300">
+                        Cabeleleiro
+                    </h3>
                 </div>
             </div>
             <div className="mx-auto mt-3 flex h-[400px] w-[90%] flex-col justify-end">
-                <ButtonLogout />
+                <ButtonLogout text="Sair" />
             </div>
         </SheetContent>
     );
