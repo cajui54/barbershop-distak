@@ -4,12 +4,14 @@ import { getServices } from '../_data-access/get-services';
 import { MdErrorOutline } from 'react-icons/md';
 import ButtonLogout from '../_components/button-logout';
 import SkeletonUser from '../_components/skeleton-user';
+import ShowPreviewServices from './_components/show-preview-services';
+import ContainerCard from '../_components/container-card';
 
 const ClientPage = async () => {
     const services = await getServices();
     return (
-        <div className="">
-            <div className="mx-auto mt-5 h-[300px] w-[90%]">
+        <div className="min-h-full w-full">
+            <ContainerCard>
                 <Suspense fallback={<SkeletonUser />}>
                     {services.length > 0 ? (
                         <div className="sm:w-[500px]">
@@ -19,7 +21,7 @@ const ClientPage = async () => {
                             <p className="text-sm text-neutral-300">
                                 Selecione um ou mais serviços
                             </p>
-                            <div className="my-2 space-y-2 py-3.5">
+                            <div className="customScrollbar my-2 h-[400px] space-y-1 overflow-y-auto py-3.5">
                                 {services.map((service) => {
                                     const newService = {
                                         ...service,
@@ -28,7 +30,7 @@ const ClientPage = async () => {
                                     return (
                                         <ServiceItem
                                             key={service.id}
-                                            {...newService}
+                                            service={newService}
                                         />
                                     );
                                 })}
@@ -44,7 +46,9 @@ const ClientPage = async () => {
                         </div>
                     )}
                 </Suspense>
-            </div>
+            </ContainerCard>
+
+            <ShowPreviewServices />
         </div>
     );
 };

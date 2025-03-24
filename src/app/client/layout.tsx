@@ -1,6 +1,6 @@
+import ReduxProvider from '@/_redux/redux-provider';
 import Header from '@/app/_components/header';
 import ScreenInfoUser from '@/app/_components/screen-info-user';
-import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 
 export default async function ClientLayout({
@@ -10,7 +10,7 @@ export default async function ClientLayout({
         <main className="h-full w-full">
             <Header />
             <ScreenInfoUser />
-            {children}
+            <ReduxProvider>{children}</ReduxProvider>
         </main>
     );
 }

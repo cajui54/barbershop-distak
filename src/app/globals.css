@@ -47,7 +47,9 @@ html,
 body {
     @apply h-full w-full bg-neutral-800;
 }
-
+.customScrollbar {
+    scrollbar-color: #009966 #18181b;
+}
 :root {
     --radius: 0.625rem;
     --background: oklch(1 0 0);

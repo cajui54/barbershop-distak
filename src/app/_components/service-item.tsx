@@ -6,45 +6,45 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { formatCurrencyBr } from '@/helpers/currency';
 import Image from 'next/image';
+import ButtonService from '../client/_components/button-service';
 
-interface ServiceItemProps {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    imageUrl: string;
+export interface ServiceItemProps {
+    service: {
+        id: string;
+        name: string;
+        description: string;
+        price: number;
+        imageUrl: string;
+    };
 }
-const ServiceItem = async ({
-    name,
-    description,
-    price,
-    imageUrl,
-}: ServiceItemProps) => {
+const ServiceItem = async ({ service }: ServiceItemProps) => {
     return (
         <Card>
             <div className="flex h-[90px] items-center gap-x-4 px-2">
                 <div className="h-[90px] w-[90px] overflow-hidden rounded-2xl bg-neutral-700">
-                    <Image src={imageUrl} alt={name} width={150} height={50} />
+                    <Image
+                        src={service.imageUrl}
+                        alt={service.name}
+                        width={150}
+                        height={50}
+                    />
                 </div>
                 <div className="grow">
                     <CardHeader>
                         <CardTitle className="text-[18px] font-bold tracking-wider text-emerald-400">
-                            {name}
+                            {service.name}
                         </CardTitle>
                         <CardDescription className="-mt-2.5">
-                            {description}
+                            {service.description}
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="mt-1.5 flex w-[80%] items-center justify-between">
                         <span className="font-bold">
-                            {formatCurrencyBr(price)}
+                            {formatCurrencyBr(service.price)}
                         </span>
-                        <Button className="mt-1.5 ml-3.5 bg-emerald-700 text-sm text-white hover:bg-emerald-600">
-                            Selecionar
-                        </Button>
+                        <ButtonService service={service} />
                     </CardContent>
                 </div>
             </div>
