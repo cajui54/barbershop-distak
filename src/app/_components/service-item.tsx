@@ -21,17 +21,18 @@ export interface ServiceItemProps {
 }
 const ServiceItem = async ({ service }: ServiceItemProps) => {
     return (
-        <Card>
+        <Card className="bg-neutral-800">
             <div className="flex h-[90px] items-center gap-x-4 px-2">
-                <div className="h-[90px] w-[90px] overflow-hidden rounded-2xl bg-neutral-700">
+                <div className="h-[100px] w-[150px] overflow-hidden rounded-2xl bg-neutral-700">
                     <Image
                         src={service.imageUrl}
                         alt={service.name}
                         width={150}
-                        height={50}
+                        height={150}
+                        className="h-full w-full"
                     />
                 </div>
-                <div className="grow">
+                <div className="w-[70%]">
                     <CardHeader>
                         <CardTitle className="text-[18px] font-bold tracking-wider text-emerald-400">
                             {service.name}
@@ -40,7 +41,7 @@ const ServiceItem = async ({ service }: ServiceItemProps) => {
                             {service.description}
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="mt-1.5 flex w-[80%] items-center justify-between">
+                    <CardContent className="mt-1.5 flex items-center justify-between">
                         <span className="font-bold">
                             {formatCurrencyBr(service.price)}
                         </span>

@@ -1,1 +1,2 @@
-[X] - Seed database with service data
+- [] create server action to save booking;
+- [] validation of datas

@@ -3,15 +3,15 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { notFound } from 'next/navigation';
-import { getServerSession, Session } from 'next-auth';
-import { authOptions } from '@/_libs/auth';
 import SkeletonUser from './skeleton-user';
+import { authSession } from '../_data-access/auth-session';
 
 const ScreenInfoUser = async () => {
-    const session: Session | null = await getServerSession(authOptions);
+    const session = await authSession();
 
     if (!session) notFound();
     const { user } = session;
+
     return (
         <div className="mx-auto mt-4 flex h-[100px] w-[90%] items-center justify-between rounded-2xl bg-neutral-900 pl-2.5 sm:ml-8 sm:w-[500px]">
             {user ? (

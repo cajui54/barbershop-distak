@@ -5,23 +5,23 @@ import { MdErrorOutline } from 'react-icons/md';
 import ButtonLogout from '../_components/button-logout';
 import SkeletonUser from '../_components/skeleton-user';
 import ShowPreviewServices from './_components/show-preview-services';
-import ContainerCard from '../_components/container-card';
+import TitlesContainer from '../_components/titles-container';
+import { CardContent, CardFooter } from '@/components/ui/card';
+import CardContainer from '../_components/card-container';
 
 const ClientPage = async () => {
     const services = await getServices();
     return (
-        <div className="min-h-full w-full">
-            <ContainerCard>
-                <Suspense fallback={<SkeletonUser />}>
-                    {services.length > 0 ? (
-                        <div className="sm:w-[500px]">
-                            <h2 className="text-2xl font-bold tracking-wide text-emerald-300">
-                                Serviços:
-                            </h2>
-                            <p className="text-sm text-neutral-300">
-                                Selecione um ou mais serviços
-                            </p>
-                            <div className="customScrollbar my-2 h-[400px] space-y-1 overflow-y-auto py-3.5">
+        <div className="my-3.5 w-full lg:flex lg:justify-center lg:gap-x-12">
+            <Suspense fallback={<SkeletonUser />}>
+                {services.length > 0 ? (
+                    <CardContainer>
+                        <TitlesContainer
+                            title="Serviços:"
+                            subtitle="Selecione um ou mais serviços"
+                        />
+                        <CardContent>
+                            <div className="customScrollbar my-2 h-[400px] space-y-2 overflow-y-auto py-3.5">
                                 {services.map((service) => {
                                     const newService = {
                                         ...service,
@@ -35,18 +35,23 @@ const ClientPage = async () => {
                                     );
                                 })}
                             </div>
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center justify-center gap-y-2 rounded-2xl bg-neutral-900 p-2">
-                            <MdErrorOutline />
-                            <p className="text-center text-neutral-400">
-                                Não há serviços cadastrados!
+                        </CardContent>
+                        <CardFooter>
+                            <p className="text-neutral-500 italic">
+                                Preços sujeito há alterações
                             </p>
-                            <ButtonLogout text="Voltar" />
-                        </div>
-                    )}
-                </Suspense>
-            </ContainerCard>
+                        </CardFooter>
+                    </CardContainer>
+                ) : (
+                    <div className="flex flex-col items-center justify-center gap-y-2 rounded-2xl bg-neutral-900 p-2">
+                        <MdErrorOutline />
+                        <p className="text-center text-neutral-400">
+                            Não há serviços cadastrados!
+                        </p>
+                        <ButtonLogout text="Voltar" />
+                    </div>
+                )}
+            </Suspense>
 
             <ShowPreviewServices />
         </div>
