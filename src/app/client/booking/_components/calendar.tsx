@@ -18,7 +18,7 @@ const CalendarComponent = ({
     };
 
     return (
-        <Card className="mx-auto mt-5 w-[90%] sm:ml-3.5 sm:w-[500px]">
+        <Card className="mx-auto mt-5 w-[90%] sm:w-[500px] lg:ml-3">
             <TitlesContainer
                 title="Data"
                 subtitle="Selecione uma data abaixo"

@@ -20,6 +20,7 @@ import { Badge } from '@/components/ui/badge';
 import { BarbershopService } from '@prisma/client';
 import { toast } from 'sonner';
 import BookingItem from '@/app/_components/booking-item';
+import BarIconLoading from '@/app/_components/bar-icon-animation';
 
 export interface BookingProps {
     date: Date;
@@ -34,6 +35,7 @@ const ContainerBooking = () => {
     );
     const [booking, setBooking] = useState<BookingProps | null>(null);
     const [isOpenSheet, setIsOpenSheet] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const { services, total } = useSelector(
         (state: RootState) => state.services
     );
@@ -44,19 +46,28 @@ const ContainerBooking = () => {
         setIsOpenSheet(false);
     };
     const handleCreateBookingClick = async () => {
-        if (booking) {
-            const response = await createBooking(booking);
+        try {
+            setIsLoading(true);
+            if (booking) {
+                const response = await createBooking(booking);
 
-            if (response.status === 'success') {
-                toast.success(response.message);
-                resetAllStates();
-            } else {
-                toast.error(response.message);
+                if (response.status === 'success') {
+                    toast.success(response.message);
+                    resetAllStates();
+                } else {
+                    toast.error(response.message);
+                }
             }
+        } catch (error) {
+            toast.error(
+                'Erro ao criar agendamento. Tente novamente mais tarde.'
+            );
+        } finally {
+            setIsLoading(false);
         }
     };
     return (
-        <div>
+        <div className="w-full lg:flex lg:items-center lg:justify-center">
             <CalendarComponent
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay}
@@ -131,14 +142,19 @@ const ContainerBooking = () => {
                                     {formatCurrencyBr(total)}
                                 </span>
                             </div>
-
-                            <Button
-                                onClick={handleCreateBookingClick}
-                                className="mx-auto mt-11 flex w-4/5 items-center justify-center gap-x-1.5 bg-emerald-600 font-bold text-neutral-900 hover:bg-emerald-400"
-                            >
-                                <FaCalendarCheck />
-                                Confirmar o Agendamento
-                            </Button>
+                            {!isLoading ? (
+                                <Button
+                                    onClick={handleCreateBookingClick}
+                                    className="mx-auto mt-11 flex w-4/5 items-center justify-center gap-x-1.5 bg-emerald-600 font-bold text-neutral-900 hover:bg-emerald-400"
+                                >
+                                    <FaCalendarCheck />
+                                    Confirmar o Agendamento
+                                </Button>
+                            ) : (
+                                <div className="mt-7">
+                                    <BarIconLoading />
+                                </div>
+                            )}
                         </div>
                     )}
                 </SheetContent>
