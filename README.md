@@ -1,2 +1,2 @@
-- [] create server action to save booking;
-- [] validation of datas
+- [] deploy
+- [] Delete booking

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '@/_redux/store';
 import { Button } from '@/components/ui/button';
@@ -17,18 +17,15 @@ import BarIconLoading from '@/app/_components/bar-icon-animation';
 
 const ShowPreviewServices = () => {
   const { services, total } = useSelector((state: RootState) => state.services);
-  const [isLoading, setLoading] = useState(false);
+
   const router = useRouter();
   const dispatch = useDispatch();
 
   const handleNextStepClick = () => {
     try {
-      setLoading(true);
       services.length > 0 && router.push('/client/booking');
     } catch (error) {
       console.error('Error navigating to booking:', error);
-    } finally {
-      setLoading(false);
     }
   };
   const handleRemoveServiceClick = (id: string) => {
@@ -46,7 +43,7 @@ const ShowPreviewServices = () => {
         </CardHeader>
         <CardContent className="mx-auto w-4/5 sm:w-[600px]">
           <div className="mx-auto my-2.5 lg:ml-1.5">
-            <ul className="customScrollbar mt-2 h-[250px] space-y-2.5 overflow-y-auto">
+            <ul className="customScrollbar mt-2 max-h-[250px] space-y-2.5 overflow-y-auto">
               {services.map((service) => (
                 <li
                   className="flex items-center justify-between gap-x-5 rounded-2xl bg-neutral-800 px-2.5 py-1 font-semibold"
@@ -86,20 +83,19 @@ const ShowPreviewServices = () => {
           </div>
         </CardContent>
         <CardFooter>
-          {services.length > 0 &&
-            (!isLoading ? (
+          {services.length > 0 && (
+            <Suspense fallback={<BarIconLoading />}>
               <Button
                 onClick={handleNextStepClick}
                 className="mx-auto mt-8 w-full bg-emerald-600 font-bold text-neutral-300 hover:bg-emerald-500 sm:w-[300px]"
               >
                 <span className="flex">
                   <FaScissors className="text-neutral-700" />
-                  Confirmar
+                  Confirmar Serviços
                 </span>
               </Button>
-            ) : (
-              <BarIconLoading />
-            ))}
+            </Suspense>
+          )}
         </CardFooter>
       </CardContainer>
     )

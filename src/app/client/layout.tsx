@@ -6,7 +6,7 @@ import Footer from '../_components/footer';
 import { authSession } from '../_data-access/auth-session';
 import { redirect } from 'next/navigation';
 import { isAdmin } from '../_data-access/controle-access/authorizationUser';
-import { Sheet } from 'lucide-react';
+import { Sheet } from '@/components/ui/sheet';
 import { SheetTrigger } from '@/components/ui/sheet';
 import { IoMenu } from 'react-icons/io5';
 import SheetContentClient from '../_components/sheet-content-client';
