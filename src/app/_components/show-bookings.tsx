@@ -6,7 +6,7 @@ import { ptBR } from 'date-fns/locale';
 import BarIconLoading from './bar-icon-animation';
 
 const ShowBookings = async () => {
-  const bookings = await getBookingByUserId('xxx');
+  const bookings = await getBookingByUserId();
 
   return (
     <div className="mx-auto mt-3.5 w-[90%]">

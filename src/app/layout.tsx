@@ -3,8 +3,6 @@ import { Roboto, Oxygen } from 'next/font/google';
 import './globals.css';
 import AuthProvider from '@/app/_providers/auth';
 import { Toaster } from '@/components/ui/sonner';
-import { authSession } from './_data-access/auth-session';
-import { redirect } from 'next/navigation';
 
 const oxygen = Oxygen({
   subsets: ['latin'],
