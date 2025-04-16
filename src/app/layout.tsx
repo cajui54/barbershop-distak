@@ -3,6 +3,7 @@ import { Roboto, Oxygen } from 'next/font/google';
 import './globals.css';
 import AuthProvider from '@/app/_providers/auth';
 import { Toaster } from '@/components/ui/sonner';
+import Head from 'next/head';
 
 const oxygen = Oxygen({
   subsets: ['latin'],
@@ -41,6 +42,9 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="dark">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
       <body className={`${oxygen.variable} ${roboto.variable} antialiased`}>
         <AuthProvider>{children}</AuthProvider>
 
